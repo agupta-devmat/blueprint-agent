@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for AWS App Runner Service blueprint-agent
+
+Parameters:
+  Region:
+    Type: String
+    Description: AWS Region for ECR Image
+    Default: eu-central-1
+  ServiceName:
+    Type: String
+    Description: Name for all App Runner resources
+    Default: blueagent
+  SubnetId:
+    Type: String
+    Description: Subnet ID for App Runner VPC Connector
+    Default: subnet-041ffe0bf7daeb276
+  AccountId:
+    Type: String
+    Description: AWS Account ID for ECR Image
+    Default: "425153892013"
+
+Resources:
+  MyBedrockAgent:
+    Type: AWS::Bedrock::Agent
+    Properties:
+      AgentName: !Ref ServiceName
+      FoundationModel:
